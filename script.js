@@ -1,9 +1,11 @@
 /* ------------------------------------ Email TOGGLE ------------------------------------ */
 
+// Initialize EmailJS with your PUBLIC KEY
 (function () {
-  emailjs.init("ZGdOk4iXwzbOB1_Wz"); // Replace with your actual public key from EmailJS
+  emailjs.init("ZGdOk4iXwzbOB1_Wz"); // Replace this
 })();
 
+// Add submit event listener
 document
   .getElementById("contact-form")
   .addEventListener("submit", function (e) {
@@ -20,6 +22,7 @@ document
       }
     );
   });
+
 /* ------------------------------------🌗 THEME TOGGLE ------------------------------------ */
 const themeToggleBtn = document.getElementById("theme-toggle");
 
