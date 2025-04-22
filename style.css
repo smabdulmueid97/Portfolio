@@ -431,6 +431,10 @@ section h2 {
 /*  INDEX PROJECT TOGGLE  */
 #projects {
   position: relative;
+  padding-bottom: 3rem; /* Add space at bottom for mobile */
+}
+* {
+  box-sizing: border-box;
 }
 
 .toggle-button {
@@ -452,7 +456,7 @@ section h2 {
 
 /* Toggle Visibility Classes */
 .projects-container.expanded {
-  max-height: 1000px;
+  max-height: none;
 }
 
 .projects-container.collapsed {
