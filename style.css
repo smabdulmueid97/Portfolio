@@ -365,7 +365,6 @@ body.light #hero {
     font-size: 1rem;
   }
 
-  .btn-primary,
   .btn-secondary {
     padding: 0.6rem 1.5rem;
     font-size: 0.95rem;
@@ -448,6 +447,34 @@ section h2 {
   z-index: 10;
   transition: transform 0.3s ease;
   color: var(--primary-color);
+}
+.tech {
+  display: inline-block;
+  border: 1.5px solid;
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin: 4px 2px 0 2px;
+  font-size: 0.9em;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+.tech:hover {
+  background: #0056b3;
+}
+
+/* Default theme (dark mode) */
+body:not(.light) .tech {
+  border-color: #00e1ff; /* blue */
+  color: #00e1ff;
+  background-color: rgba(0, 0, 0, 0.064);
+}
+
+/* Light theme */
+body.light .tech {
+  border-color: #005ccc; /* blue */
+  color: #005ccc;
+  background-color: #e7f1ff;
 }
 
 .toggle-button:hover {
