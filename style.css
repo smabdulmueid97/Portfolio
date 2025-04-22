@@ -373,11 +373,26 @@ section h2 {
   color: var(--primary-color);
 }
 
-.projects {
+/* Responsive Grid Layout for Projects */
+#projects-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  padding: 1rem;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+/* 2 columns for medium screens */
+@media (min-width: 600px) {
+  #projects-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 3 columns for large screens */
+@media (min-width: 900px) {
+  #projects-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .project {
@@ -425,27 +440,17 @@ section h2 {
   color: #007bff;
 }
 
-.projects-container {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.projects-container .project {
-  display: block;
-}
-
-.projects-container .hidden {
-  display: none;
-}
-
+/* Toggle Visibility Classes */
 .projects-container.expanded {
   max-height: 1000px;
 }
 
 .projects-container.collapsed {
   max-height: 200px;
+}
+
+.projects-container .hidden {
+  display: none;
 }
 
 /* --------------------------------------- INDEX ABOUT SECTION ----------------------------------------- */
