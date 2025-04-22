@@ -502,6 +502,7 @@ body.light .tech {
 }
 
 /* ------------------------------------ INDEX CONTACT FORM SECTION ------------------------------------ */
+/* Contact Form Styling */
 form {
   display: flex;
   flex-direction: column;
