@@ -3,22 +3,20 @@
 emailjs.init("ZGdOk4iXwzbOB1_Wz"); // Your public key
 
 // Form submit handler
-document
-  .getElementById("contact-form")
-  .addEventListener("submit", function (e) {
-    e.preventDefault();
+document.getElementById("contact").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    emailjs.sendForm("service_zj9evjo", "template_gh8lqrn", this).then(
-      () => {
-        alert("Message sent successfully!");
-        this.reset();
-      },
-      (error) => {
-        alert("Failed to send message. Please try again.");
-        console.error("EmailJS Error:", error);
-      }
-    );
-  });
+  emailjs.sendForm("service_zj9evjo", "template_gh8lqrn", this).then(
+    () => {
+      alert("Message sent successfully!");
+      this.reset();
+    },
+    (error) => {
+      alert("Failed to send message. Please try again.");
+      console.error("EmailJS Error:", error);
+    }
+  );
+});
 
 /* ------------------------------------🌗 THEME TOGGLE ------------------------------------ */
 const themeToggleBtn = document.getElementById("theme-toggle");
