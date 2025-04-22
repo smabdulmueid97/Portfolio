@@ -52,6 +52,16 @@ body.light {
 }
 
 /* ------------------------------------ HEADER & NAV SECTION ------------------------------------ */
+h1 a {
+  color: inherit; /* Use the color from the parent (like h1) */
+  text-decoration: none; /* Remove underline */
+}
+
+h1 a:hover {
+  text-decoration: none; /* No underline on hover */
+  color: inherit; /* No color change on hover */
+}
+
 header {
   background: rgba(0, 0, 0, 0.4);
   padding: 1rem 2rem;
@@ -355,7 +365,6 @@ body.light #hero {
     font-size: 1rem;
   }
 
-  .btn-primary,
   .btn-secondary {
     padding: 0.6rem 1.5rem;
     font-size: 0.95rem;
@@ -373,11 +382,26 @@ section h2 {
   color: var(--primary-color);
 }
 
-.projects {
+/* Responsive Grid Layout for Projects */
+#projects-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  padding: 1rem;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+/* 2 columns for medium screens */
+@media (min-width: 600px) {
+  #projects-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 3 columns for large screens */
+@media (min-width: 900px) {
+  #projects-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .project {
@@ -406,6 +430,10 @@ section h2 {
 /*  INDEX PROJECT TOGGLE  */
 #projects {
   position: relative;
+  padding-bottom: 3rem; /* Add space at bottom for mobile */
+}
+* {
+  box-sizing: border-box;
 }
 
 .toggle-button {
@@ -420,32 +448,50 @@ section h2 {
   transition: transform 0.3s ease;
   color: var(--primary-color);
 }
+.tech {
+  display: inline-block;
+  border: 1.5px solid;
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin: 4px 2px 0 2px;
+  font-size: 0.9em;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+.tech:hover {
+  background: #0056b3;
+}
+
+/* Default theme (dark mode) */
+body:not(.light) .tech {
+  border-color: #00e1ff; /* blue */
+  color: #00e1ff;
+  background-color: rgba(0, 0, 0, 0.064);
+}
+
+/* Light theme */
+body.light .tech {
+  border-color: #005ccc; /* blue */
+  color: #005ccc;
+  background-color: #e7f1ff;
+}
 
 .toggle-button:hover {
   color: #007bff;
 }
 
-.projects-container {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.projects-container .project {
-  display: block;
-}
-
-.projects-container .hidden {
-  display: none;
-}
-
+/* Toggle Visibility Classes */
 .projects-container.expanded {
-  max-height: 1000px;
+  max-height: none;
 }
 
 .projects-container.collapsed {
   max-height: 200px;
+}
+
+.projects-container .hidden {
+  display: none;
 }
 
 /* --------------------------------------- INDEX ABOUT SECTION ----------------------------------------- */
