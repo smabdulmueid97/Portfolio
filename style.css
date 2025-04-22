@@ -52,6 +52,16 @@ body.light {
 }
 
 /* ------------------------------------ HEADER & NAV SECTION ------------------------------------ */
+h1 a {
+  color: inherit; /* Use the color from the parent (like h1) */
+  text-decoration: none; /* Remove underline */
+}
+
+h1 a:hover {
+  text-decoration: none; /* No underline on hover */
+  color: inherit; /* No color change on hover */
+}
+
 header {
   background: rgba(0, 0, 0, 0.4);
   padding: 1rem 2rem;
