@@ -1,27 +1,26 @@
 /* ------------------------------------ Email TOGGLE ------------------------------------ */
 
-// Initialize EmailJS with your PUBLIC KEY
-(function () {
-  emailjs.init("ZGdOk4iXwzbOB1_Wz"); // Replace this
-})();
+window.onload = function () {
+  // Initialize EmailJS with your public key
+  emailjs.init("ZGdOk4iXwzbOB1_Wz");
 
-// Add submit event listener
-document
-  .getElementById("contact-form")
-  .addEventListener("submit", function (e) {
+  const form = document.getElementById("contact-form");
+
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
 
     emailjs.sendForm("service_zj9evjo", "template_gh8lqrn", this).then(
-      () => {
+      function () {
         alert("Message sent successfully!");
-        this.reset();
+        form.reset();
       },
-      (error) => {
-        alert("Failed to send message. Please try again.");
-        console.error(error);
+      function (error) {
+        alert("Failed to send message. See console for details.");
+        console.error("EmailJS Error:", error);
       }
     );
   });
+};
 
 /* ------------------------------------🌗 THEME TOGGLE ------------------------------------ */
 const themeToggleBtn = document.getElementById("theme-toggle");
