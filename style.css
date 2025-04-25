@@ -632,6 +632,23 @@ form button:hover {
   color: #e0e0e0;
   border-color: #000000;
 }
+.disabled-btn {
+  background-color: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: not-allowed;
+  transition: border-color 0.3s;
+  border-radius: 8px;
+}
+
+.disabled-btn:disabled {
+  background-color: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  cursor: not-allowed;
+}
 
 /*  MOBILE: max-width 768px  */
 @media (max-width: 768px) {
