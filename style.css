@@ -612,18 +612,25 @@ form button:hover {
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  background-color: inherit;
-  color: inherit;
-  border: 1px solid #444;
+  background-color: #50a500;
+  color: #1a1a1a;
+  border: 2px solid #00000033;
   width: auto;
   text-align: center;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .project-button:hover {
-  background-color: inherit;
-  color: var(--primary-color);
-  border-color: var(--primary-color);
+  background-color: #005713;
+  color: #fff;
+  border: 3px solid #00571374;
+  border-color: #000000;
+}
+
+.project-button:active {
+  background-color: #003d0d; /* Darker green for click effect */
+  color: #e0e0e0;
+  border-color: #000000;
 }
 
 /*  MOBILE: max-width 768px  */

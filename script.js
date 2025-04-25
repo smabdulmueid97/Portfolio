@@ -1,3 +1,19 @@
+/* ------------------------------------🌗 THEME TOGGLE ------------------------------------ */
+const themeToggleBtn = document.getElementById("theme-toggle");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "light") {
+    document.body.classList.add("light");
+  }
+});
+
+themeToggleBtn.addEventListener("click", () => {
+  const isLight = document.body.classList.toggle("light");
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+});
+
 /* ------------------------------------ Email TOGGLE ------------------------------------ */
 // Initialize EmailJS
 emailjs.init("ZGdOk4iXwzbOB1_Wz"); // Replace with your public key
@@ -19,22 +35,6 @@ document
       }
     );
   });
-
-/* ------------------------------------🌗 THEME TOGGLE ------------------------------------ */
-const themeToggleBtn = document.getElementById("theme-toggle");
-
-document.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme");
-
-  if (savedTheme === "light") {
-    document.body.classList.add("light");
-  }
-});
-
-themeToggleBtn.addEventListener("click", () => {
-  const isLight = document.body.classList.toggle("light");
-  localStorage.setItem("theme", isLight ? "light" : "dark");
-});
 
 /* ------------------------------------📦 PROJECTS TOGGLE ------------------------------------ */
 const toggleButton = document.getElementById("toggle-projects");
