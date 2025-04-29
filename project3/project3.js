@@ -1,29 +1,49 @@
-/* ------------------------------------------------📦 PROJECT1 -------------------------------------------- */
+/* ------------------------------------------------📦 PROJECT3 -------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  const totalImages = 15; // total images in ./project1 folder
+  const totalImages = 15;
   const folderPath = "./";
   let currentIndex = 1;
 
   const imageElement = document.getElementById("carousel-image");
   const prevBtn = document.getElementById("prev-btn");
   const nextBtn = document.getElementById("next-btn");
+  const modal = document.getElementById("image-modal");
+  const modalImage = document.getElementById("modal-image");
+  const closeModalBtn = document.getElementById("close-modal");
 
   function updateImage(index) {
-    imageElement.src = `${folderPath}/${index}.png`;
+    const imageSrc = `${folderPath}${index}.png`;
+    imageElement.src = imageSrc;
   }
 
+  // Open the modal when image clicked
+  imageElement.addEventListener("click", () => {
+    modal.style.display = "flex"; // <--- Show the modal
+    modalImage.src = imageElement.src;
+  });
+
+  // Close the modal on close button click
+  closeModalBtn.addEventListener("click", () => {
+    modal.style.display = "none"; // <--- Hide the modal
+  });
+
+  // Close modal if click outside the image
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  // Navigation buttons
   prevBtn.addEventListener("click", () => {
-    // Loop to the last image if current index is 1
     currentIndex = currentIndex > 1 ? currentIndex - 1 : totalImages;
     updateImage(currentIndex);
   });
 
   nextBtn.addEventListener("click", () => {
-    // Loop to the first image if current index is the last
     currentIndex = currentIndex < totalImages ? currentIndex + 1 : 1;
     updateImage(currentIndex);
   });
 
-  // Initialize the carousel with the first image
   updateImage(currentIndex);
 });
