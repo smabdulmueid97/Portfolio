@@ -36,20 +36,17 @@ document
     );
   });
 
-/* ------------------------------------📦 PROJECTS TOGGLE ------------------------------------ */
+// PROJECTS TOGGLE
 const toggleButton = document.getElementById("toggle-projects");
 const projectsContainer = document.getElementById("projects-container");
 const arrowIcon = toggleButton.querySelector("i");
 
-// Initially collapse the project section
 projectsContainer.classList.add("collapsed");
 
 toggleButton.addEventListener("click", function () {
-  // Toggle visibility classes
   projectsContainer.classList.toggle("expanded");
   projectsContainer.classList.toggle("collapsed");
 
-  // Toggle arrow icon direction
   if (projectsContainer.classList.contains("expanded")) {
     arrowIcon.classList.remove("fa-chevron-down");
     arrowIcon.classList.add("fa-chevron-up");
@@ -59,14 +56,22 @@ toggleButton.addEventListener("click", function () {
   }
 });
 
-// Toggle theme and store preference
-themeSwitch.addEventListener("change", () => {
-  document.body.classList.toggle("light");
+// CERTIFICATES TOGGLE
+const toggleButton2 = document.getElementById("toggle-certificates");
+const certificatesContainer = document.getElementById("certificates-container");
+const arrowIcon2 = toggleButton2.querySelector("i");
 
-  // Save the current theme to localStorage
-  if (document.body.classList.contains("light")) {
-    localStorage.setItem("theme", "light");
+certificatesContainer.classList.add("collapsed");
+
+toggleButton2.addEventListener("click", function () {
+  certificatesContainer.classList.toggle("expanded");
+  certificatesContainer.classList.toggle("collapsed");
+
+  if (certificatesContainer.classList.contains("expanded")) {
+    arrowIcon2.classList.remove("fa-chevron-down");
+    arrowIcon2.classList.add("fa-chevron-up");
   } else {
-    localStorage.setItem("theme", "dark");
+    arrowIcon2.classList.remove("fa-chevron-up");
+    arrowIcon2.classList.add("fa-chevron-down");
   }
 });

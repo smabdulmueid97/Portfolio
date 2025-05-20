@@ -824,3 +824,29 @@ form button:hover {
 .close:hover {
   background-color: darkred;
 }
+.projects-container.collapsed {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.projects-container.expanded {
+  max-height: none;
+}
+#certificates-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+@media (min-width: 600px) {
+  #certificates-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  #certificates-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
