@@ -24,7 +24,7 @@ document
   .addEventListener("submit", function (e) {
     e.preventDefault();
 
-    emailjs.sendForm("service_zj9evjo", "template_gh8lqrn", this).then(
+    emailjs.sendForm("service_fflfpvk", "template_gh8lqrn", this).then(
       () => {
         alert("Message sent successfully!");
         this.reset();
