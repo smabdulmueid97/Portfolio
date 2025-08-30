@@ -1,6 +1,6 @@
 /* ------------------------------------------------📦 PROJECT8 -------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  const totalImages = 31;
+  const totalImages = 4;
   const folderPath = "./";
   let currentIndex = 1;
 
