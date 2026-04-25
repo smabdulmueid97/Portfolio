@@ -197,7 +197,7 @@ section h2 {
 }
 
 .video-wrapper {
-  flex: 1 1 25%; /* Set to 25% to match image scroller */
+  flex: 1 1 25%; 
   min-width: 0;
 }
 
@@ -210,7 +210,7 @@ section h2 {
 }
 
 .project-description-box {
-  flex: 1 1 50%; /* Middle text taking a bit more width */
+  flex: 1 1 50%; 
   min-width: 0;
 }
 
@@ -226,12 +226,15 @@ section h2 {
 }
 
 .image-scroller {
-  flex: 1 1 25%; /* Same width as the video */
+  flex: 1 1 25%; 
   min-width: 0;
   display: flex;
   overflow-x: auto;
   gap: 1rem;
-  scroll-behavior: smooth;
+  
+  /* We removed scroll-behavior: smooth; here to fix mobile swiping issues */
+  -webkit-overflow-scrolling: touch; /* Ensures smooth momentum swiping on iOS */
+  
   scrollbar-width: none; 
   -ms-overflow-style: none;
 }
@@ -394,10 +397,10 @@ section h2 {
   color: white;
 }
 .float-wa {
-  background-color: #25d366; /* WhatsApp Green */
+  background-color: #25d366; 
 }
 .float-email {
-  background-color: var(--primary-color); /* Theme blue */
+  background-color: var(--primary-color); 
 }
 
 /* --------------------------------- FOOTER -------------------------------------------- */

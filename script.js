@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
       img.addEventListener("click", () => {
         modal.style.display = "flex";
         modalImage.src = img.src;
+        // Fix snapping bug: Lock the background page from scrolling while modal is open
+        document.body.style.overflow = "hidden";
       });
 
       scroller.appendChild(img);
@@ -57,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let autoScrollSpeed = 0.5; // Base slow scroll speed
     let currentSpeed = autoScrollSpeed;
     let isHovering = false;
+    let isTouchPaused = false; // Flag to temporarily pause auto-scroll on mobile
 
     // Detect mouse hover position
     scroller.addEventListener("mousemove", (e) => {
@@ -83,23 +86,49 @@ document.addEventListener("DOMContentLoaded", () => {
       isHovering = false;
     });
 
+    // --- FIX FOR MOBILE SWIPING ---
+    // Pause the JavaScript auto-scroller as soon as a finger touches the scroller
+    scroller.addEventListener("touchstart", () => {
+      isTouchPaused = true;
+    }, { passive: true });
+
+    // Wait 2.5 seconds after they stop touching before resuming the auto-scroll
+    scroller.addEventListener("touchend", () => {
+      setTimeout(() => {
+        isTouchPaused = false;
+      }, 2500); 
+    }, { passive: true });
+    
+    // Also pause on manual trackpad wheel scrolling (for desktop)
+    scroller.addEventListener("wheel", () => {
+      isTouchPaused = true;
+      clearTimeout(scroller.wheelTimeout);
+      scroller.wheelTimeout = setTimeout(() => {
+        isTouchPaused = false;
+      }, 2500);
+    }, { passive: true });
+
+
     // Seamless smooth animation loop
     function scrollAnimation() {
-      // If the user isn't hovering, run the ping-pong auto scroll
-      if (!isHovering) {
-        // Check if hit the right edge
-        if (scroller.scrollLeft >= scroller.scrollWidth - scroller.clientWidth - 1) {
-          autoScrollSpeed = -0.5; // Reverse to left
-        } 
-        // Check if hit the left edge
-        else if (scroller.scrollLeft <= 0) {
-          autoScrollSpeed = 0.5; // Reverse to right
+      // Only run auto-scroll if the user is NOT actively swiping/touching it
+      if (!isTouchPaused) {
+        // If the user isn't hovering, run the ping-pong auto scroll
+        if (!isHovering) {
+          // Check if hit the right edge
+          if (scroller.scrollLeft >= scroller.scrollWidth - scroller.clientWidth - 1) {
+            autoScrollSpeed = -0.5; // Reverse to left
+          } 
+          // Check if hit the left edge
+          else if (scroller.scrollLeft <= 0) {
+            autoScrollSpeed = 0.5; // Reverse to right
+          }
+          currentSpeed = autoScrollSpeed;
         }
-        currentSpeed = autoScrollSpeed;
+        
+        // Apply the speed to the scroll bar
+        scroller.scrollLeft += currentSpeed;
       }
-      
-      // Apply the speed to the scroll bar
-      scroller.scrollLeft += currentSpeed;
       
       requestAnimationFrame(scrollAnimation);
     }
@@ -111,12 +140,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Modal close functionality
   closeModalBtn.addEventListener("click", () => {
     modal.style.display = "none";
+    // Restore background scrolling when closing modal
+    document.body.style.overflow = ""; 
   });
 
   modal.addEventListener("click", (event) => {
     // Close modal if user clicks on the dark background
     if (event.target === modal) {
       modal.style.display = "none";
+      // Restore background scrolling when closing modal
+      document.body.style.overflow = "";
     }
   });
 });
