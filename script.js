@@ -1,77 +1,122 @@
-/* ------------------------------------🌗 THEME TOGGLE ------------------------------------ */
-const themeToggleBtn = document.getElementById("theme-toggle");
+/* ------------------------------------ NAVBAR SCROLL LOGIC ------------------------------------ */
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+const floatingSocials = document.getElementById('floatingSocials');
 
-document.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme");
-
-  if (savedTheme === "light") {
-    document.body.classList.add("light");
+window.addEventListener('scroll', () => {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (scrollTop > lastScrollTop) {
+    // Scrolling down - hide navbar
+    navbar.classList.add('navbar-hidden');
+  } else {
+    // Scrolling up - show navbar
+    navbar.classList.remove('navbar-hidden');
   }
+  
+  // Show floating buttons when scrolled past 300px
+  if (scrollTop > 300) {
+    floatingSocials.classList.add('show');
+  } else {
+    floatingSocials.classList.remove('show');
+  }
+  
+  // Prevent negative scroll values from breaking logic on mobile devices
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
 });
 
-themeToggleBtn.addEventListener("click", () => {
-  const isLight = document.body.classList.toggle("light");
-  localStorage.setItem("theme", isLight ? "light" : "dark");
-});
 
-/* ------------------------------------ Email TOGGLE ------------------------------------ */
-// Initialize EmailJS
-emailjs.init("ZGdOk4iXwzbOB1_Wz"); // Replace with your public key
+/* ------------------------------------📦 HORIZONTAL IMAGE SCROLLER & MODAL ------------------------------------ */
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("image-modal");
+  const modalImage = document.getElementById("modal-image");
+  const closeModalBtn = document.getElementById("close-modal");
 
-// Form submit handler
-document
-  .getElementById("contact-form")
-  .addEventListener("submit", function (e) {
-    e.preventDefault();
+  const scrollers = document.querySelectorAll(".image-scroller");
 
-    emailjs.sendForm("service_fflfpvk", "template_gh8lqrn", this).then(
-      () => {
-        alert("Message sent successfully!");
-        this.reset();
-      },
-      (error) => {
-        alert("Failed to send message. Please try again.");
-        console.error("EmailJS Error:", error);
+  scrollers.forEach((scroller) => {
+    // 1. Create the images dynamically
+    const folder = scroller.getAttribute("data-folder"); 
+    const totalImages = parseInt(scroller.getAttribute("data-total"), 10);
+
+    for (let i = 1; i <= totalImages; i++) {
+      const img = document.createElement("img");
+      img.src = `./Images/${folder}/${i}.png`;
+      img.classList.add("scroller-img");
+      img.alt = `Project Screenshot ${i}`;
+
+      img.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalImage.src = img.src;
+      });
+
+      scroller.appendChild(img);
+    }
+
+    // 2. Auto-scroll & Hover-scroll logic
+    let autoScrollSpeed = 0.5; // Base slow scroll speed
+    let currentSpeed = autoScrollSpeed;
+    let isHovering = false;
+
+    // Detect mouse hover position
+    scroller.addEventListener("mousemove", (e) => {
+      isHovering = true;
+      const rect = scroller.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      
+      // If cursor is on the left 30% of the container, scroll left
+      if (x < rect.width * 0.3) {
+        currentSpeed = -4; 
+      } 
+      // If cursor is on the right 30% of the container, scroll right
+      else if (x > rect.width * 0.7) {
+        currentSpeed = 4; 
+      } 
+      // Middle 40% rests the scrolling
+      else {
+        currentSpeed = 0; 
       }
-    );
+    });
+
+    // Reset to auto-scroll when mouse leaves
+    scroller.addEventListener("mouseleave", () => {
+      isHovering = false;
+    });
+
+    // Seamless smooth animation loop
+    function scrollAnimation() {
+      // If the user isn't hovering, run the ping-pong auto scroll
+      if (!isHovering) {
+        // Check if hit the right edge
+        if (scroller.scrollLeft >= scroller.scrollWidth - scroller.clientWidth - 1) {
+          autoScrollSpeed = -0.5; // Reverse to left
+        } 
+        // Check if hit the left edge
+        else if (scroller.scrollLeft <= 0) {
+          autoScrollSpeed = 0.5; // Reverse to right
+        }
+        currentSpeed = autoScrollSpeed;
+      }
+      
+      // Apply the speed to the scroll bar
+      scroller.scrollLeft += currentSpeed;
+      
+      requestAnimationFrame(scrollAnimation);
+    }
+    
+    // Start the loop for this specific container
+    scrollAnimation();
   });
 
-// PROJECTS TOGGLE
-const toggleButton = document.getElementById("toggle-projects");
-const projectsContainer = document.getElementById("projects-container");
-const arrowIcon = toggleButton.querySelector("i");
+  // Modal close functionality
+  closeModalBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
 
-projectsContainer.classList.add("collapsed");
-
-toggleButton.addEventListener("click", function () {
-  projectsContainer.classList.toggle("expanded");
-  projectsContainer.classList.toggle("collapsed");
-
-  if (projectsContainer.classList.contains("expanded")) {
-    arrowIcon.classList.remove("fa-chevron-down");
-    arrowIcon.classList.add("fa-chevron-up");
-  } else {
-    arrowIcon.classList.remove("fa-chevron-up");
-    arrowIcon.classList.add("fa-chevron-down");
-  }
-});
-
-// CERTIFICATES TOGGLE
-const toggleButton2 = document.getElementById("toggle-certificates");
-const certificatesContainer = document.getElementById("certificates-container");
-const arrowIcon2 = toggleButton2.querySelector("i");
-
-certificatesContainer.classList.add("collapsed");
-
-toggleButton2.addEventListener("click", function () {
-  certificatesContainer.classList.toggle("expanded");
-  certificatesContainer.classList.toggle("collapsed");
-
-  if (certificatesContainer.classList.contains("expanded")) {
-    arrowIcon2.classList.remove("fa-chevron-down");
-    arrowIcon2.classList.add("fa-chevron-up");
-  } else {
-    arrowIcon2.classList.remove("fa-chevron-up");
-    arrowIcon2.classList.add("fa-chevron-down");
-  }
+  modal.addEventListener("click", (event) => {
+    // Close modal if user clicks on the dark background
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
 });
