@@ -28,6 +28,29 @@ window.addEventListener('scroll', () => {
 
 /* ------------------------------------📦 HORIZONTAL IMAGE SCROLLER & MODAL ------------------------------------ */
 document.addEventListener("DOMContentLoaded", () => {
+  const visitorCountElement = document.getElementById("visitor-count");
+
+  async function fetchVisitorCount() {
+    const namespace = "smabdulmueid97-portfolio";
+    const key = "total_visitors";
+    const apiUrl = `https://api.countapi.xyz/hit/${namespace}/${key}`;
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error("Count API request failed");
+      const data = await response.json();
+      const count = Number(data.value || 0);
+      if (visitorCountElement) visitorCountElement.textContent = count.toString();
+      localStorage.setItem("pageVisitors", count.toString());
+    } catch (error) {
+      const fallbackCount = Number(localStorage.getItem("pageVisitors") || "0") + 1;
+      localStorage.setItem("pageVisitors", fallbackCount.toString());
+      if (visitorCountElement) visitorCountElement.textContent = fallbackCount.toString();
+    }
+  }
+
+  fetchVisitorCount();
+
   const modal = document.getElementById("image-modal");
   const modalImage = document.getElementById("modal-image");
   const closeModalBtn = document.getElementById("close-modal");
