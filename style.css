@@ -135,38 +135,6 @@ section,
   text-transform: uppercase;
 }
 
-.visitor-count {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: rgba(5, 10, 25, 0.95);
-  color: #f4f7ff;
-  padding: 0.55rem 1.1rem;
-  border-radius: 999px;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  font-size: 0.95rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(45, 120, 255, 0.25);
-}
-
-.visitor-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: rgba(45, 120, 255, 0.15);
-  color: #65b0ff;
-  border-radius: 50%;
-  font-size: 1rem;
-}
-
-.visitor-count strong {
-  color: #65b0ff;
-  font-size: 1rem;
-}
-
 .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
 .btn-primary, .btn-secondary {
   padding: 0.75rem 2rem;
