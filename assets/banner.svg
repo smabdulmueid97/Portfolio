@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Portfolio — a personal portfolio site">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#0E7490"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E0F2FE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" rx="24" fill="url(#bg)"/>
+  <circle cx="1050" cy="60" r="90" fill="#FFFFFF" opacity="0.08"/>
+  <circle cx="110" cy="300" r="70" fill="#FFFFFF" opacity="0.08"/>
+  <circle cx="980" cy="300" r="40" fill="#FFFFFF" opacity="0.10"/>
+  <text x="60" y="90" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="bold" fill="#FFFFFF">Portfolio</text>
+  <text x="60" y="135" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#BAE6FD">A personal portfolio site — HTML, CSS, and JavaScript.</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="60" y="170" width="130" height="54" rx="27" fill="#FFFFFF"/>
+    <text x="125" y="205" font-size="22" font-weight="bold" fill="#0F172A" text-anchor="middle">HTML</text>
+    <rect x="210" y="170" width="110" height="54" rx="27" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="265" y="205" font-size="22" font-weight="bold" fill="#FFFFFF" text-anchor="middle">CSS</text>
+    <rect x="340" y="170" width="190" height="54" rx="27" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="435" y="205" font-size="22" font-weight="bold" fill="#FFFFFF" text-anchor="middle">JavaScript</text>
+  </g>
+  <g>
+    <rect x="700" y="150" width="440" height="130" rx="16" fill="url(#card)"/>
+    <text x="730" y="192" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="bold" fill="#0E7490">Live on GitHub Pages</text>
+    <text x="730" y="224" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#334155">smabdulmueid97.github.io/Portfolio/</text>
+    <text x="730" y="256" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#64748B">No build step. Open it and it runs.</text>
+  </g>
+  <text x="60" y="320" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#A5D8E8">index.html  •  style.css  •  script.js  •  Images/</text>
+</svg>
